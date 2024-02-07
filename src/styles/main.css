@@ -1,48 +1,45 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  background-image: url("../images/wall.png");
+.menu-time h2:nth-child(1), .menu-score h2:nth-child(1){
+    color: #ff0000;
 }
 
-.menu {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+.menu-lives span {
+    color: rgb(160, 9, 9);
+    font-size: 40px;
+}
 
-  height: 90px;
-  width: 100%;
-  background-color: #000000;
-  color: #ffffff;
-  border-bottom: 5px solid #ffd700;
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+
+.menu {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    background-color: #000000;
+    color: #ffffff;
+    height: 90px;
+    width: 100%;
 }
 
 .panel {
-  margin-top: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid 1px #ff0000;
 }
 
 .square {
-  height: 150px;
-  width: 150px;
-  border: 1px solid #000000;
-  background-color: #1aeaa5;
+    height: 150px;
+    width: 150px;
+    border: solid 1px #000000;
+    background-color: #0c528f;
 }
 
 .enemy {
-  background-image: url("../images/ralph.png");
-  background-size: cover;
-}
-
-.menu-lives {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.menu-time h2:nth-child(2),
-.menu-score h2:nth-child(2) {
-  margin-top: 1rem;
+    background-color: rgb(55, 187, 165);
 }
