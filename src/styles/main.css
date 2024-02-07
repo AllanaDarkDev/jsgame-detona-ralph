@@ -1,16 +1,23 @@
 .menu-time h2:nth-child(1), .menu-score h2:nth-child(1){
     color: #ff0000;
+    margin-bottom: 10px;
 }
 
-.menu-lives span {
-    color: rgb(160, 9, 9);
-    font-size: 40px;
+.menu-lives {
+    display: flex;
+    align-items: center;
+}
+
+.menu-lives img {
+    height: 60px;
 }
 
 .container {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: 100vh;
+    background-image: url("../images/wall.png");
+
 }
 
 
@@ -23,6 +30,7 @@
     color: #ffffff;
     height: 90px;
     width: 100%;
+    border-bottom: 5px solid #ffd700;
 }
 
 .panel {
@@ -30,7 +38,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: solid 1px #ff0000;
 }
 
 .square {
@@ -41,5 +48,6 @@
 }
 
 .enemy {
-    background-color: rgb(55, 187, 165);
+    background-image: url("../images/ralph.png");
+    background-size: cover;
 }
