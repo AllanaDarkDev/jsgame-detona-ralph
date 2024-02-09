@@ -4,11 +4,14 @@ const state = {
         enemy: document.querySelector(".enemy"),
         timeLeft: document.querySelector("#time-left"),
         score: document.querySelector("#score"),
+        livesLeft: document.getElementById("lives"),
+        thaChild: document.getElementById("child"),
     },
     values: {
         hitPosition: 0,
         result: 0,
         currentTime: 60,
+        lives: 3,
     },
     actions: {
         countDownTimerId: setInterval(countDown, 1000),
@@ -38,6 +41,21 @@ function randomSquare() {
     state.values.hitPosition = randomSquare.id;
 }
 
+function livesCalculator() {
+    state.values.lives--
+    state.view.livesLeft.textContent = `x${state.values.lives}`
+    if(state.values.lives <= 0){
+        clearInterval(state.actions.countDownTimerId)
+        clearInterval(state.actions.timerId)
+        clearInterval(livesCalculator)
+        alert("GAME OVER!")
+        alert(`resultados: ${state.values.result}`)
+        playSoundGameOver()
+    } else {
+        playSoundDamage()
+    }
+}
+
 function addListenerHitBox() {
     state.view.squares.forEach((square) => {
         square.addEventListener("mousedown", () => {
@@ -45,19 +63,48 @@ function addListenerHitBox() {
                 state.values.result++;
                 state.view.score.textContent = state.values.result;
                 state.values.hitPosition = null;
-                playSound()
+                playSoundHitbox()
+            } else {
+                livesCalculator()
             }
         });
     });
 }
 
-function playSound(){
-    let audio = new Audio("./src/audios/hit.m4a")
-    audio.volume = 0.2
+function checkThaChild() {
+    state.view.thaChild.addEventListener("mousedown", () => {
+        playSoundChild()
+        state.view.livesLeft.textContent = ">:("
+        setInterval(livesCalculator, 2000)
+    });
+}
+
+function playSoundHitbox(){
+    let audio = new Audio("./src/audios/sqek.mp3")
+    audio.volume = 0.5
     audio.play();
 }
 
+function playSoundDamage() {
+    let hitAudio = new Audio("./src/audios/damage.mp3")
+    hitAudio.volume = 0.2
+    hitAudio.play();
+}
+
+function playSoundChild() {
+    let childAudio = new Audio("./src/audios/child.mp3")
+    childAudio.volume = 0.2
+    childAudio.play();
+}
+
+function playSoundGameOver() {
+    let gameOverAudio = new Audio("./src/audios/gameOver.mp3")
+    gameOverAudio.volume = 0.2
+    gameOverAudio.play();
+}
+
 function initialize(){
+    checkThaChild();
     addListenerHitBox();
 }
 
