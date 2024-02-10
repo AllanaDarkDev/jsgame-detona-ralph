@@ -10,7 +10,7 @@ const state = {
     values: {
         hitPosition: 0,
         result: 0,
-        currentTime: 60,
+        currentTime: 5,
         lives: 3,
     },
     actions: {
@@ -45,12 +45,12 @@ function livesCalculator() {
     state.values.lives--
     state.view.livesLeft.textContent = `x${state.values.lives}`
     if(state.values.lives <= 0){
+        playSoundGameOver()
         clearInterval(state.actions.countDownTimerId)
         clearInterval(state.actions.timerId)
         clearInterval(livesCalculator)
         alert("GAME OVER!")
         alert(`resultados: ${state.values.result}`)
-        playSoundGameOver()
     } else {
         playSoundDamage()
     }
@@ -99,7 +99,6 @@ function playSoundChild() {
 
 function playSoundGameOver() {
     let gameOverAudio = new Audio("./src/audios/gameOver.mp3")
-    gameOverAudio.volume = 0.2
     gameOverAudio.play();
 }
 
