@@ -10,7 +10,7 @@ const state = {
     values: {
         hitPosition: 0,
         result: 0,
-        currentTime: 6,
+        currentTime: 61,
         lives: 3,
     },
     actions: {
