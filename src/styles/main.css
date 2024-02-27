@@ -60,3 +60,17 @@
     background-image: url("../images/Froggit_overworld.webp");
     background-size: cover;
 }
+
+
+@media (max-width: 651px) {
+    .square {
+        width: 100px;
+        height: 100px;
+    }
+    .menu {
+        font-size: 8px
+    }
+    img {
+        height: 8px;
+    }
+}

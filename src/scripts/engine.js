@@ -10,7 +10,7 @@ const state = {
     values: {
         hitPosition: 0,
         result: 0,
-        currentTime: 5,
+        currentTime: 6,
         lives: 3,
     },
     actions: {
@@ -24,11 +24,16 @@ function countDown() {
     state.view.timeLeft.textContent = state.values.currentTime
 
     if (state.values.currentTime <= 0) {
-        clearInterval(state.actions.countDownTimerId)
-        clearInterval(state.actions.timerId)
-        alert("GAME OVER!")
-        alert(`resultados: ${state.values.result}`)
+        gameOver();
     }
+}
+
+function gameOver() {
+    playSoundGameOver()
+    clearInterval(state.actions.countDownTimerId);
+    clearInterval(state.actions.timerId);
+    alert("GAME OVER!");
+    alert(`resultados: ${state.values.result}`);
 }
 
 function randomSquare() {
@@ -44,13 +49,10 @@ function randomSquare() {
 function livesCalculator() {
     state.values.lives--
     state.view.livesLeft.textContent = `x${state.values.lives}`
-    if(state.values.lives <= 0){
-        playSoundGameOver()
-        clearInterval(state.actions.countDownTimerId)
-        clearInterval(state.actions.timerId)
+    if(state.values.lives === 0){
         clearInterval(livesCalculator)
-        alert("GAME OVER!")
-        alert(`resultados: ${state.values.result}`)
+        gameOver()
+
     } else {
         playSoundDamage()
     }
@@ -64,7 +66,7 @@ function addListenerHitBox() {
                 state.view.score.textContent = state.values.result;
                 state.values.hitPosition = null;
                 playSoundHitbox()
-            } else {
+            } else if(state.values.lives > 0 ){
                 livesCalculator()
             }
         });
